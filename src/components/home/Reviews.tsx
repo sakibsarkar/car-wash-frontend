@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Star, StarIcon } from "lucide-react";
+import { useCreateReviewMutation } from "@/redux/features/review/review.api";
+import { Star } from "lucide-react";
+import Rating from "react-rating";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-
 const RatingBar = ({
   rating,
   count,
@@ -86,6 +87,19 @@ export default function Component() {
     { rating: 1, count: 9 },
   ];
 
+  const [createReview] = useCreateReviewMutation();
+
+  const handleRating = (rate) => console.log(rate);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createReview({
+      rating: 5,
+      comment: "helo",
+      user: "668eaf8a3a7a67489a47b701",
+    });
+  };
+
   return (
     <div className="layout_container py-[40px] flex gap-[20px]">
       <Card className="w-full">
@@ -133,19 +147,8 @@ export default function Component() {
       </Card>
       <div className="bg-muted px-6 py-8 sm:px-10 sm:py-10 w-[40%]">
         <h3 className="text-xl font-bold mb-4">Write a Review</h3>
-        <form className="grid gap-4">
-          <div className="flex items-center">
-            <Label htmlFor="rating" className="mr-4">
-              Rating:
-            </Label>
-            <div className="flex items-center">
-              <StarIcon className="w-6 h-6 fill-primaryMat stroke-primaryMat mr-1 cursor-pointer" />
-              <StarIcon className="w-6 h-6 fill-primaryMat stroke-primaryMat mr-1 cursor-pointer" />
-              <StarIcon className="w-6 h-6 fill-primaryMat stroke-primaryMat mr-1 cursor-pointer" />
-              <StarIcon className="w-6 h-6 fill-none stroke-primaryMat mr-1 cursor-pointer" />
-              <StarIcon className="w-6 h-6 fill-none stroke-primaryMat cursor-pointer" />
-            </div>
-          </div>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <Rating onClick={handleRating} />
           <div>
             <Label htmlFor="feedback" className="mb-2">
               Feedback:

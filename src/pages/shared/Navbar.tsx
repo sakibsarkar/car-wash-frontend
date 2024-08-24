@@ -5,7 +5,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useAppSelector } from "@/redux/hooks";
 import { LucideShoppingCart, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CiUser } from "react-icons/ci";
@@ -28,7 +27,6 @@ const navLinks = [
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const { items, total } = useAppSelector((state) => state.cart);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       // event target
@@ -97,13 +95,11 @@ const Navbar = () => {
             <Link to={"/cart"} className="text-primaryTxt relative">
               <LucideShoppingCart />
               <span className="absolute text-[12px] top-[-14px] right-[-10px] text-white bg-primaryMat shadow-md px-[5px] py-[3px] rounded-[8px]">
-                {items.length}
+                00
               </span>
             </Link>
-            <span className="font-[600] text-primaryMat">
-              ${total.toFixed(2)}
-            </span>
-          </div>{" "}
+            <span className="font-[600] text-primaryMat">$0</span>
+          </div>
           <button
             onClick={() => setShowSidebar(!showSidebar)}
             className="md:hidden flex menuBTn"
