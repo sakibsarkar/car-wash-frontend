@@ -20,6 +20,12 @@ export const RenderNewLine = ({ text }: { text: string }) => {
 const HeroSection = () => {
   const sliderData = [
     {
+      id: 3,
+      image: "/images/banner3.jpg",
+      heading: "Caring service for your car",
+      desc: "Discover top-tier fitness equipment designed to take your workouts to the next level.",
+    },
+    {
       id: 1,
       image: "/images/banner1.jpg",
       heading: "Interior & Exterior cleaning",
@@ -29,12 +35,6 @@ const HeroSection = () => {
       id: 2,
       image: "/images/banner2.jpg",
       heading: "Fully automatic machine",
-      desc: "Discover top-tier fitness equipment designed to take your workouts to the next level.",
-    },
-    {
-      id: 3,
-      image: "/images/banner3.jpg",
-      heading: "Caring service for your car",
       desc: "Discover top-tier fitness equipment designed to take your workouts to the next level.",
     },
   ];

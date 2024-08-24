@@ -8,6 +8,7 @@ import {
 import { useAppSelector } from "@/redux/hooks";
 import { LucideShoppingCart, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { CiUser } from "react-icons/ci";
 import { Link, NavLink } from "react-router-dom";
 
 const navLinks = [
@@ -16,20 +17,12 @@ const navLinks = [
     href: "/",
   },
   {
-    lebel: "Product",
-    href: "/product",
+    lebel: "Services",
+    href: "/",
   },
   {
-    lebel: "Product Manage",
-    href: "/manage-product",
-  },
-  {
-    lebel: "About Us",
-    href: "/aboutus",
-  },
-  {
-    lebel: "Blog",
-    href: "/fg",
+    lebel: "Booking",
+    href: "/",
   },
 ];
 
@@ -69,9 +62,9 @@ const Navbar = () => {
   }, [showSidebar, setShowSidebar]);
   return (
     <div className="mx-auto layout_container fixed top-0 z-50">
-      <div className="flex  items-center justify-between border-b-2 py-3 ">
+      <div className="flex  items-center justify-between py-3 ">
         <Link to="/" className="flex items-center">
-          <img src="/images/logo.png" className="w-[120px]" />
+          <img src="/images/logo.png" className="w-[100px]" />
         </Link>
         <div className="center w-fit gap-[15px]">
           <NavigationMenu className="hidden md:flex">
@@ -81,7 +74,10 @@ const Navbar = () => {
                   {navLinks.map(({ href, lebel }, i) => (
                     <Link to={href} key={i + "navlink"}>
                       <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
+                        className={
+                          navigationMenuTriggerStyle() +
+                          " !bg-transparent !text-white font-[700]"
+                        }
                       >
                         {lebel}
                       </NavigationMenuLink>
@@ -91,6 +87,12 @@ const Navbar = () => {
               </div>
             </NavigationMenuList>
           </NavigationMenu>
+          <Link
+            to={"/"}
+            className="px-[18px] py-[5px] bg-primaryMat text-white rounded-full center gap-[10px]"
+          >
+            Login <CiUser />
+          </Link>
           <div className="center gap-[10px]">
             <Link to={"/cart"} className="text-primaryTxt relative">
               <LucideShoppingCart />
