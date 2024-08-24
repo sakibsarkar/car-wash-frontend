@@ -7,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { MdArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
 export const RenderNewLine = ({ text }: { text: string }) => {
   return text.split("\n").map((line, index) => (
@@ -21,7 +22,7 @@ const HeroSection = () => {
     {
       id: 1,
       image: "/images/banner1.jpg",
-      heading: "Keep your car shine",
+      heading: "Interior & Exterior cleaning",
       desc: "Discover top-tier fitness equipment designed to take your workouts to the next level.",
     },
     {
@@ -32,16 +33,16 @@ const HeroSection = () => {
     },
     {
       id: 3,
-      image: "/images/slider1.webp",
-      heading: "Proffesional Team",
+      image: "/images/banner3.jpg",
+      heading: "Caring service for your car",
       desc: "Discover top-tier fitness equipment designed to take your workouts to the next level.",
     },
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden">
       <Carousel
-        className=" overflow-hidden h-screen "
+        className="overflow-hidden h-screen "
         plugins={[
           Autoplay({
             delay: 6000,
@@ -51,32 +52,43 @@ const HeroSection = () => {
         <CarouselContent className="flex">
           {sliderData.map((slider) => (
             <CarouselItem key={slider.id} className="min-w-full">
-              <Card className="bg-transparent">
+              <Card className="bg-transparent rounded-none border-none shadow-none">
                 <CardContent className="flex items-center justify-center h-full p-0 w-full">
                   <div
-                    className="relative w-full h-screen hover:scale-[1.03]"
+                    className="relative w-full h-screen overflow-hidden"
                     style={{ transition: "0.3s" }}
                   >
                     <div className="overlay" />
                     <img
                       src={slider.image}
-                      className="absolute z-[1]  top-0 left-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="absolute z-[1]  top-0 left-0 h-full w-full object-cover ani_image"
                       alt=""
                     />
 
-                    <div className="relative z-[21] w-full h-full hero_title flex-col center pl-[50px] bg-[#00000011] gap-[5px]">
-                      <h1 className="text-[20px] sm:text-[30px] lg:text-[70px] font-[700] text-white capitalize">
+                    <div className="relative z-[21] w-full h-full  flex-col center pl-[50px] bg-[#00000011] gap-[5px]">
+                      <h4 className="text-center font-[700] uppercase hero_title text-primaryMat tracking-[7px]">
+                        top class cleaning
+                      </h4>
+                      <h1 className="text-[20px] sm:text-[30px] hero_title lg:text-[90px] font-[700] text-white capitalize">
                         <RenderNewLine text={slider.heading} />
                       </h1>
                       <p className="max-w-[550px] text-white text-center  text-[12px] sm:text-[14px] lg:text-[16px]">
                         {slider.desc}
                       </p>
-                      <Link
-                        to={"/"}
-                        className="px-[20px] border-[1px] border-white py-[5px] text-white mt-[20px]"
-                      >
-                        Shop Npw
-                      </Link>
+                      <div className="center gap-[10px]">
+                        <Link
+                          to={"/"}
+                          className="center gap-[5px] px-[40px] py-[12px] rounded-full bg-primaryMat/80 text-white mt-[20px] text-[25px]"
+                        >
+                          Book a Slot <MdArrowForwardIos />
+                        </Link>
+                        <Link
+                          to={"/"}
+                          className="center gap-[5px] px-[40px] py-[12px] rounded-full bg-white text-primaryMat mt-[20px] text-[25px]"
+                        >
+                          Explore <MdArrowForwardIos />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

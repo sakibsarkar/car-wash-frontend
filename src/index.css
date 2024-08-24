@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -120,6 +121,10 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
+.spacing {
+  font-family: "Gruppo", sans-serif;
+}
+
 .layout_container {
   width: 100%;
   margin-right: auto;
@@ -142,4 +147,17 @@ body {
     rgba(28, 36, 48, 0.329) 50%,
     rgba(23, 18, 10, 0.692) 100%
   );
+}
+
+.ani_image {
+  animation: image 15s ease alternate infinite;
+}
+
+@keyframes image {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.35);
+  }
 }
