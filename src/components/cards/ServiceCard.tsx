@@ -1,6 +1,6 @@
 import { IService } from "@/types/service";
 import { WashingMachineIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 import { Card } from "../ui/card";
 
 const ServiceCard = ({ service }: { service: IService }) => {
@@ -27,7 +27,12 @@ const ServiceCard = ({ service }: { service: IService }) => {
           </div>
         </div>
       </div>
-      <Button className="w-full bg-primaryMat">Book Now</Button>
+      <Link
+        to={`/service/${service._id}`}
+        className="w-full bg-primaryMat text-white hover:bg-primary py-[8px] text-center rounded-[8px]"
+      >
+        Book Now
+      </Link>
     </Card>
   );
 };

@@ -1,4 +1,5 @@
 import { api } from "@/redux/api/api";
+import { IService } from "@/types/service";
 interface IQueryOptions {
   searchTerm?: string;
   min?: number;
@@ -20,6 +21,15 @@ const serviceAPi = api.injectEndpoints({
       },
       providesTags: ["service"],
     }),
+    getServiceById: builder.query<{data:IService},string>({
+      query: (id: string) => {
+        return {
+          url: `/services/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["service"],
+    }),
   }),
 });
-export const { useGetSrvicesQuery } = serviceAPi;
+export const { useGetSrvicesQuery,useGetServiceByIdQuery } = serviceAPi;

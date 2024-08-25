@@ -4,6 +4,7 @@ import MainLayout from "@/components/Layouts/MainLayouts";
 import Home from "@/pages/home/Home";
 import Login from "@/pages/login/Login";
 import Register from "@/pages/register/Register";
+import ServiceDetail from "@/pages/ServiceDetail/ServiceDetail";
 import Services from "@/pages/Services/Services";
 import NotFound from "@/pages/shared/NotFound";
 
@@ -17,12 +18,17 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+
       {
         index: true,
         path: "services",
         element: <Services />,
       },
-
+      {
+        index: true,
+        path: "service/:id",
+        element: <ServiceDetail />,
+      },
       {
         path: "*",
         element: <NotFound />,

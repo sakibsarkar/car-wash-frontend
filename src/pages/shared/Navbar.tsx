@@ -63,7 +63,7 @@ const Navbar = () => {
     };
   }, [showSidebar, setShowSidebar]);
   return (
-    <header className="bg-[#00000071]">
+    <header className="bg-[#0000002f]">
       <div className="mx-auto layout_container sticky top-0 z-50">
         <div className="flex  items-center justify-between py-3 ">
           <Link to="/" className="flex items-center">
