@@ -69,6 +69,6 @@ export const api = createApi({
   reducerPath: "api",
 
   baseQuery: baseQueryWithRefreshToken,
-  tagTypes: ["user", "review", "service", "slots"],
+  tagTypes: ["user", "review", "service", "slots","booking"],
   endpoints: () => ({}),
 });

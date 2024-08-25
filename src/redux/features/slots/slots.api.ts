@@ -18,6 +18,15 @@ const slotsApi = api.injectEndpoints({
       },
       providesTags: ["slots"],
     }),
+    getSlotById: builder.query<{ data: ISlot }, string>({
+      query: (id) => {
+        return {
+          url: `/slots/availability/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["slots"],
+    }),
   }),
 });
-export const { useGetSlotsQuery } = slotsApi;
+export const { useGetSlotsQuery,useGetSlotByIdQuery } = slotsApi;

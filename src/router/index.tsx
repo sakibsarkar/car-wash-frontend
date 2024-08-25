@@ -1,5 +1,6 @@
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import Booking from "@/pages/Booking/Booking";
 
 import Home from "@/pages/home/Home";
 import Login from "@/pages/login/Login";
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
         index: true,
         path: "service/:id",
         element: <ServiceDetail />,
+      },
+      {
+        index: true,
+        path: "procced-booking",
+        element: <Booking />,
       },
       {
         path: "*",
