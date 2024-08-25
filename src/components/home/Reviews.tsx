@@ -2,10 +2,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCreateReviewMutation } from "@/redux/features/review/review.api";
+import { useAppSelector } from "@/redux/hooks";
 import { Star } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { GoStar, GoStarFill } from "react-icons/go";
 import Rating from "react-rating";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -82,6 +84,7 @@ const Review = ({
 
 export default function Component() {
   const [review, setReview] = useState<number>(1);
+  const { user } = useAppSelector((state) => state.auth);
 
   const totalReviews = 35.8;
   const ratings = [
@@ -95,10 +98,12 @@ export default function Component() {
   const [createReview] = useCreateReviewMutation();
 
   const handleRating = (rate: number) => setReview(rate);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // ✂️ todo: handle unauth user logic
+    if (!user) {
+      return navigate("/login");
+    }
 
     const toastID = toast.loading("Please wait...");
     try {
@@ -110,12 +115,12 @@ export default function Component() {
       await createReview({
         rating: review,
         comment,
-        user: "668eaf8a3a7a67489a47b701",
       });
       toast.dismiss(toastID);
       toast.success("Review added", {
         description: "Thanks for your feedback",
       });
+      form.reset();
     } catch {
       toast.error("something went wrong while making this request");
     }
