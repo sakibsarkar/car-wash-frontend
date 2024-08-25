@@ -3,7 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCreateReviewMutation } from "@/redux/features/review/review.api";
 import { Star } from "lucide-react";
+import { FormEvent, useState } from "react";
+import { GoStar, GoStarFill } from "react-icons/go";
 import Rating from "react-rating";
+import { toast } from "sonner";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 const RatingBar = ({
@@ -78,6 +81,8 @@ const Review = ({
 );
 
 export default function Component() {
+  const [review, setReview] = useState<number>(1);
+
   const totalReviews = 35.8;
   const ratings = [
     { rating: 5, count: 14 },
@@ -89,16 +94,34 @@ export default function Component() {
 
   const [createReview] = useCreateReviewMutation();
 
-  const handleRating = (rate) => console.log(rate);
+  const handleRating = (rate: number) => setReview(rate);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createReview({
-      rating: 5,
-      comment: "helo",
-      user: "668eaf8a3a7a67489a47b701",
-    });
+    // ✂️ todo: handle unauth user logic
+
+    const toastID = toast.loading("Please wait...");
+    try {
+      const form = e.target as HTMLFormElement;
+      const comment = form.feedback.value as string;
+      if (!comment || comment.length < 15) {
+        return toast.error("review should be atleast 15 character");
+      }
+      await createReview({
+        rating: review,
+        comment,
+        user: "668eaf8a3a7a67489a47b701",
+      });
+      toast.dismiss(toastID);
+      toast.success("Review added", {
+        description: "Thanks for your feedback",
+      });
+    } catch {
+      toast.error("something went wrong while making this request");
+    }
   };
+
+  const RatingJsx = Rating as any;
 
   return (
     <div className="layout_container py-[40px] flex gap-[20px]">
@@ -148,16 +171,21 @@ export default function Component() {
       <div className="bg-muted px-6 py-8 sm:px-10 sm:py-10 w-[40%]">
         <h3 className="text-xl font-bold mb-4">Write a Review</h3>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <Rating onClick={handleRating} />
+          <RatingJsx
+            className="text-[30px]"
+            emptySymbol={<GoStar className="text-primaryMat" />}
+            fullSymbol={<GoStarFill className="text-primaryMat" />}
+            onClick={handleRating}
+          />
           <div>
             <Label htmlFor="feedback" className="mb-2">
               Feedback:
             </Label>
             <Textarea
-              id="feedback"
               placeholder="Share your thoughts and experiences..."
               className="w-full rounded-lg border-2 border-muted focus:border-primary focus:ring-primary"
               rows={4}
+              name="feedback"
             />
           </div>
           <Button type="submit" className="justify-self-end bg-primaryMat">
