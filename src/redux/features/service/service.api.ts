@@ -63,6 +63,16 @@ const serviceAPi = api.injectEndpoints({
       },
       invalidatesTags: ["service"],
     }),
+    updateService: builder.mutation({
+      query: ({ id, payload }: { id: string; payload: Partial<IService> }) => {
+        return {
+          url: `/services/${id}`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["service"],
+    }),
   }),
 });
 export const {
@@ -70,4 +80,5 @@ export const {
   useGetServiceByIdQuery,
   useCreatServiceMutation,
   useDeletServiceMutation,
+  useUpdateServiceMutation,
 } = serviceAPi;

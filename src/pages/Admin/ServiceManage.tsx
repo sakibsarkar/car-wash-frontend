@@ -123,8 +123,10 @@ const ServiceManage = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data?.data?.map(
-                  ({ _id, description, duration, name, price, createdAt }) => (
+                {data?.data?.map((service) => {
+                  const { _id, description, duration, name, price, createdAt } =
+                    service;
+                  return (
                     <TableRow key={_id}>
                       <TableCell className="font-medium">{name}</TableCell>
                       <TableCell>{trimText(description, 30)}</TableCell>
@@ -142,13 +144,13 @@ const ServiceManage = () => {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <EditService id={_id}/>
+                          <EditService data={service} />
                           <DeleteService id={_id} />
                         </div>
                       </TableCell>
                     </TableRow>
-                  )
-                )}
+                  );
+                })}
               </TableBody>
             </Table>
           </CardContent>
