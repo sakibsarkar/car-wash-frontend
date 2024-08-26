@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import SectionHeading from "@/components/ui/SectionHeading";
+import SectionHeading from "@/components/ui/sectionHeading";
 import { setBookingInfo } from "@/redux/features/booking/booking.slice";
 import { useGetServiceByIdQuery } from "@/redux/features/service/service.api";
 import { useGetSlotsQuery } from "@/redux/features/slots/slots.api";

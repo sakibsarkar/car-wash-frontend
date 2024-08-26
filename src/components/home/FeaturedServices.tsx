@@ -1,4 +1,4 @@
-import SectionHeading from "@/components/ui/SectionHeading";
+import SectionHeading from "@/components/ui/sectionHeading";
 import { serviceData } from "@/mock/service";
 import Autoplay from "embla-carousel-autoplay";
 import { ArrowRightIcon, CheckIcon, ClockIcon } from "lucide-react";
@@ -102,7 +102,8 @@ const FeaturedServices = () => {
                     </li>
                   </ul>
                   <Button className="bg-red-500 text-white px-6 py-3 rounded-full">
-                   Add to Compare<ArrowRightIcon className="ml-2 h-5 w-5" />
+                    Add to Compare
+                    <ArrowRightIcon className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
               </div>

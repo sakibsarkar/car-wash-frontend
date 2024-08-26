@@ -87,6 +87,25 @@
     @apply bg-background text-foreground;
   }
 }
+.nav_shape {
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0 99%);
+  background: linear-gradient(#333333e3, #333333b7),
+    url("https://static.vecteezy.com/system/resources/thumbnails/008/326/859/small/abstract-car-decal-design-graphic-abstract-stripe-racing-background-kit-designs-for-wrap-vehicle-race-car-rally-adventure-and-livery-vector.jpg");
+
+  animation: moveBackground 100s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
 
 body {
   font-family: "Quicksand", sans-serif;

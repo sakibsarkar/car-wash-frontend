@@ -62,29 +62,30 @@ const Navbar = () => {
       document.body.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [showSidebar, setShowSidebar]);
+  
   return (
-    <header className="bg-[#0000002f]">
-      <div className="mx-auto layout_container sticky top-0 z-50">
-        <div className="flex  items-center justify-between py-3 ">
+    <header className="bg-[#000000] nav_shape fixed z-20 w-full border-b-primaryMat border-b-[1px]">
+      <div className="mx-auto layout_container">
+        <div className="flex  items-center justify-between py-2">
           <Link to="/" className="flex items-center">
             <img src="/images/logo.png" className="w-[100px]" />
           </Link>
-          <div className="center w-fit gap-[15px]">
+          <div className="center w-fit gap-[15px] pt-[0] pb-[10px]">
             <NavigationMenu className="hidden md:flex">
               <NavigationMenuList>
                 <div className="flex justify-end">
                   <NavigationMenuItem>
                     {navLinks.map(({ href, lebel }, i) => (
-                      <Link to={href} key={i + "navlink"}>
-                        <NavigationMenuLink
-                          className={
-                            navigationMenuTriggerStyle() +
-                            " !bg-transparent !text-white font-[700]"
-                          }
-                        >
-                          {lebel}
-                        </NavigationMenuLink>
-                      </Link>
+                      <NavigationMenuLink
+                        key={i}
+                        href={href}
+                        className={
+                          navigationMenuTriggerStyle() +
+                          " !bg-transparent !text-white font-[700] py-[0]"
+                        }
+                      >
+                        {lebel}
+                      </NavigationMenuLink>
                     ))}
                   </NavigationMenuItem>
                 </div>
