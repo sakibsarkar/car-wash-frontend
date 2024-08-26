@@ -142,8 +142,8 @@ const ServiceManage = () => {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <EditService />
-                          <DeleteService />
+                          <EditService id={_id}/>
+                          <DeleteService id={_id} />
                         </div>
                       </TableCell>
                     </TableRow>

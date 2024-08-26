@@ -54,10 +54,20 @@ const serviceAPi = api.injectEndpoints({
       },
       invalidatesTags: ["service"],
     }),
+    deletService: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `/services/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["service"],
+    }),
   }),
 });
 export const {
   useGetSrvicesQuery,
   useGetServiceByIdQuery,
   useCreatServiceMutation,
+  useDeletServiceMutation,
 } = serviceAPi;
