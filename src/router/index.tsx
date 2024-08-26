@@ -1,5 +1,7 @@
 import AuthLayout from "@/components/Layouts/AuthLayout";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import ServiceManage from "@/pages/Admin/ServiceManage";
 import Booking from "@/pages/Booking/Booking";
 import Home from "@/pages/Home/Home";
 
@@ -35,10 +37,6 @@ const router = createBrowserRouter([
         path: "procced-booking",
         element: <Booking />,
       },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
     ],
   },
   {
@@ -56,6 +54,26 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        path: "admin",
+        element: <ServiceManage />,
+      },
+      {
+        index: true,
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
