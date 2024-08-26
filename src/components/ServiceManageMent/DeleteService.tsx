@@ -46,7 +46,7 @@ const DeleteService = ({ id }: { id: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon" className="rounded-full">
+        <Button variant="destructive" size="icon" className="rounded-full">
           <TrashIcon className="h-4 w-4" />
           <span className="sr-only">Delete</span>
         </Button>

@@ -168,7 +168,7 @@ const ServiceManage = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`${
                     page === i + 1
-                      ? "bg-primary text-muted-foreground"
+                      ? "bg-primary text-muted hover:bg-primary"
                       : "text-primary"
                   } border-[1px] border-primary`}
                 >

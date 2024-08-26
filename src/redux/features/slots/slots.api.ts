@@ -27,6 +27,38 @@ const slotsApi = api.injectEndpoints({
       },
       providesTags: ["slots"],
     }),
+    createSlot: builder.mutation<
+      { data: ISlot; success: boolean },
+      Partial<ISlot>
+    >({
+      query: (payload) => {
+        return {
+          url: `/services/slots`,
+          method: "POST",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["slots"],
+    }),
+
+    getAllSlots: builder.query<
+      { data: ISlot[]; totalDoc: number },
+      { page: number; limit: number }
+    >({
+      query: ({ page, limit }) => {
+        return {
+          url: `/services/get/all?page=${page}&limit=${limit}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["slots"],
+    }),
   }),
 });
-export const { useGetSlotsQuery,useGetSlotByIdQuery } = slotsApi;
+
+export const {
+  useGetAllSlotsQuery,
+  useGetSlotByIdQuery,
+  useGetSlotsQuery,
+  useCreateSlotMutation,
+} = slotsApi;
