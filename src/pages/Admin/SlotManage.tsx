@@ -30,11 +30,14 @@ const SlotManage = () => {
   const [limit, setLimit] = useState(10);
 
   const [page, setCurrentPage] = useState(1);
-  const { data } = useGetAllSlotsQuery({ limit, page });
+  const { data, isFetching } = useGetAllSlotsQuery({ limit, page });
   const toggleSlotStatus = (id) => {};
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Slot Management</h1>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">Slot Management</h1>
+        <p className="text-muted-foreground">Manage slots to get booking</p>
+      </div>
       <div className="w-full flex items-center justify-end my-6 gap-[10px]">
         <Select onValueChange={(e) => setLimit(Number(e))}>
           <SelectTrigger className="w-fit">
@@ -53,7 +56,7 @@ const SlotManage = () => {
         </Select>
         <AddSlot />
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto relative w-full">
         <Table>
           <TableHeader>
             <TableRow>
@@ -96,6 +99,13 @@ const SlotManage = () => {
             ))}
           </TableBody>
         </Table>
+        {isFetching ? (
+          <span className="w-full h-full absolute top-0 left-0 bg-primary/60 skeleton opacity-[0.6] rounded-[10px] center">
+            <span className="text-primaryMat">Loading...</span>
+          </span>
+        ) : (
+          ""
+        )}
       </div>
       <div className="w-full px-6 flex items-center justify-start gap-[10px]">
         <p>Page:</p>

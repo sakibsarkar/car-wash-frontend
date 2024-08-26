@@ -119,14 +119,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
-.react-photo-album--photo {
-  transition: 0.3s;
-}
-.react-photo-album--photo:hover {
-  transform: scale(1.03);
-  border-radius: 10px;
-}
-
 .footerBoxGradient {
   background: rgb(43, 164, 109);
   background: linear-gradient(
@@ -136,6 +128,19 @@ body {
   );
 }
 
+.smoothBar::-webkit-scrollbar {
+  width: 5px;
+  opacity: 1;
+}
+
+.smoothBar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.smoothBar:hover::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+}
 .PhoneInputInput {
   outline: none;
 }
@@ -204,7 +209,6 @@ body {
   );
   background-size: 200px 100%;
   background-repeat: no-repeat;
-  display: inline-block;
   animation: skeleton-loading 1.5s infinite linear;
 }
 @keyframes skeleton-loading {

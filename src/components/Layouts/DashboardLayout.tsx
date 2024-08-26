@@ -8,9 +8,11 @@ const DashboardLayout = () => {
     <ThemeProvider defaultTheme="light">
       <div className="w-full h-screen flex items-start justify-start pb-[30px]">
         <Sidebar />
-        <div className="w-full h-full overflow-auto flex-col flex">
+        <div className="w-full h-full flex-col flex">
           <DashboardHeader />
-          <Outlet />
+          <div className="h-full overflow-auto smoothBar">
+            <Outlet />
+          </div>
         </div>
       </div>
     </ThemeProvider>

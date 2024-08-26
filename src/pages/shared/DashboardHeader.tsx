@@ -5,7 +5,7 @@ import ThemeChanger from "./ThemeChanger";
 const DashboardHeader = () => {
   const { user } = useAppSelector((state) => state.auth);
   return (
-    <div className="w-full flex items-center justify-between px-[20px]  py-[10px] border-b-[1px] border-muted">
+    <div className="w-full flex items-center justify-between px-[20px]  py-[10px] border-b-[1px] border-muted shrink-0">
       <img src="/images/logo.png" className="w-[80px]" />
       <div className="flex items-center justify-end gap-[8px]">
         <ThemeChanger />

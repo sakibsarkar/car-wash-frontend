@@ -39,7 +39,7 @@ const ServiceManage = () => {
   const [page, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState("-createdAt");
-  const { data } = useGetSrvicesQuery({
+  const { data, isFetching } = useGetSrvicesQuery({
     searchTerm,
     limit,
     page,
@@ -48,9 +48,10 @@ const ServiceManage = () => {
 
   return (
     <div className="w-full bg-background">
-      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-background px-6 shadow-sm">
-        <h1 className="text-xl font-bold">Service Dashboard</h1>
-      </header>
+      <div className="my-6 px-6">
+        <h1 className="text-2xl font-bold">Service Management</h1>
+        <p className="text-muted-foreground">Manage your services</p>
+      </div>
       <div className="w-full flex items-center justify-between px-6 mt-6">
         <form
           className="flex w-[350px]"
@@ -110,7 +111,7 @@ const ServiceManage = () => {
       </div>
       <main className="p-6">
         <Card>
-          <CardContent>
+          <CardContent className="relative">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -153,6 +154,13 @@ const ServiceManage = () => {
                 })}
               </TableBody>
             </Table>
+            {isFetching ? (
+              <div className="w-full h-full absolute top-0 left-0 skeleton opacity-[0.6] rounded-[10px] center">
+                <span className="text-primaryMat">Loading...</span>
+              </div>
+            ) : (
+              ""
+            )}
           </CardContent>
         </Card>
       </main>

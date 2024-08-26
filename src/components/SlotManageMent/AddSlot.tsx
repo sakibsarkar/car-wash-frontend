@@ -112,7 +112,7 @@ const AddSlot = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Create New Slot</Button>
+        <Button variant="default">Create New Slot</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
