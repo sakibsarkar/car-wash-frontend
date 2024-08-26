@@ -38,20 +38,47 @@ const ServiceManage = () => {
   const [limit, setLimit] = useState(10);
   const [page, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const { data } = useGetSrvicesQuery({ searchTerm, limit, page });
-  console.log(data?.data);
+  const [sort, setSort] = useState("-createdAt");
+  const { data } = useGetSrvicesQuery({
+    searchTerm,
+    limit,
+    page,
+    sort,
+  });
 
   return (
     <div className="w-full bg-background">
       <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-background px-6 shadow-sm">
         <h1 className="text-xl font-bold">Service Dashboard</h1>
+      </header>
+      <div className="w-full flex items-center justify-between px-6 mt-6">
+        <form
+          className="flex w-[350px]"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const form = e.target as HTMLFormElement;
+            setSearchTerm(form.search.value);
+          }}
+        >
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <SearchIcon className="h-5 text-muted-foreground w-auto" />
+            </div>
+            <Input
+              type="search"
+              name="search"
+              onBlur={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search..."
+              className="block w-full p-4 pl-10 text-sm text-foreground bg-background border border-input rounded-md shadow-sm focus:ring-primary focus:border-primary"
+            />
+          </div>
+          <Button type="submit" variant="secondary" className="ml-[10px]">
+            Search
+          </Button>
+        </form>
         <div className="center gap-[20px]">
-          <Select
-            onValueChange={(e) => setLimit(Number(e))}
-            value={limit.toString()}
-            defaultValue={limit.toString()}
-          >
-            <SelectTrigger className="w-[100px]">
+          <Select onValueChange={(e) => setLimit(Number(e))}>
+            <SelectTrigger className="">
               <ListOrderedIcon className="h-4 w-4" />
               <SelectValue placeholder="Limit per page" />
             </SelectTrigger>
@@ -59,39 +86,28 @@ const ServiceManage = () => {
               <SelectGroup>
                 <SelectLabel>Content limit</SelectLabel>
 
-                <SelectItem value="10">10</SelectItem>
-                <SelectItem value="20">20</SelectItem>
-                <SelectItem value="30">30</SelectItem>
+                <SelectItem value="10">Limit: 10</SelectItem>
+                <SelectItem value="20">Limit: 20</SelectItem>
+                <SelectItem value="30">Limit: 30</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
+
+          <Select onValueChange={setSort}>
+            <SelectTrigger>
+              <ListOrderedIcon className="h-4 w-4" />
+              <SelectValue placeholder="Sort By" />
+            </SelectTrigger>
+            <SelectGroup className="w-[100px]">
+              <SelectContent>
+                <SelectItem value="-createdAt">New first</SelectItem>
+                <SelectItem value="createdAt">Old first</SelectItem>
+              </SelectContent>
+            </SelectGroup>
+          </Select>
           <Addservice />
         </div>
-      </header>
-      <form
-        className="flex w-[350px] pl-6 mt-6"
-        onSubmit={(e) => {
-          e.preventDefault();
-          const form = e.target as HTMLFormElement;
-          setSearchTerm(form.search.value);
-        }}
-      >
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <SearchIcon className="h-5 text-muted-foreground w-auto" />
-          </div>
-          <Input
-            type="search"
-            name="search"
-            onBlur={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search..."
-            className="block w-full p-4 pl-10 text-sm text-foreground bg-background border border-input rounded-md shadow-sm focus:ring-primary focus:border-primary"
-          />
-        </div>
-        <Button type="submit" variant="secondary" className="ml-[10px]">
-          Search
-        </Button>
-      </form>
+      </div>
       <main className="p-6">
         <Card>
           <CardContent>

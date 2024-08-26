@@ -41,6 +41,23 @@ const serviceAPi = api.injectEndpoints({
       },
       providesTags: ["service"],
     }),
+    creatService: builder.mutation<
+      { data: IService; success: boolean },
+      object
+    >({
+      query: (data) => {
+        return {
+          url: `/services`,
+          method: "POST",
+          body: { ...data, isDeleted: false },
+        };
+      },
+      invalidatesTags: ["service"],
+    }),
   }),
 });
-export const { useGetSrvicesQuery, useGetServiceByIdQuery } = serviceAPi;
+export const {
+  useGetSrvicesQuery,
+  useGetServiceByIdQuery,
+  useCreatServiceMutation,
+} = serviceAPi;
