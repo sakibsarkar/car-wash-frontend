@@ -1,6 +1,10 @@
 import { api } from "@/redux/api/api";
-import { IBooking } from "@/types/booking";
-
+import { IBooking, IUserBooking } from "@/types/booking";
+interface IQueryOptions {
+  filter?: string;
+  page?: string | number;
+  limit?: number | string;
+}
 const slotsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     createBooking: builder.mutation<{ data: any }, IBooking>({
@@ -13,6 +17,18 @@ const slotsApi = api.injectEndpoints({
       },
       invalidatesTags: ["booking"],
     }),
+    getAllBookings: builder.query<
+      { data: IUserBooking[]; totalDoc: number },
+      IQueryOptions
+    >({
+      query: ({ limit, page }) => {
+        return {
+          url: `/bookings?page=${page || "1"}&limit=${limit || 10}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["booking"],
+    }),
   }),
 });
-export const { useCreateBookingMutation } = slotsApi;
+export const { useCreateBookingMutation, useGetAllBookingsQuery } = slotsApi;

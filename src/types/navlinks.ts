@@ -25,19 +25,8 @@ export const adminLinks: NavItem[] = [
     title: "Manage Slots",
   },
   {
-    href: "/dashboard/admin",
+    href: "/dashboard/admin/manage-bookings",
     Icon: CiUser,
-
-    title: "profile",
-  },
-  {
-    href: "/dashboard/kanban",
-    Icon: CiUser,
-    title: "kanban",
-  },
-  {
-    href: "/",
-    Icon: CiUser,
-    title: "login",
+    title: "Manage Bookings",
   },
 ];

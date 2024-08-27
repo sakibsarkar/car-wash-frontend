@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { CalendarIcon } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import * as Yup from "yup";
 
 const BookingView = () => {
@@ -28,23 +29,26 @@ const BookingView = () => {
   const { data } = useGetSlotByIdQuery(slot);
 
   const handleSubmit = async () => {
-    const payload: IBooking = {
-      service,
-      slot,
-      customer: user?._id || "",
-    };
-    const { data } = await createBooking(payload);
-    if (data && data.data?.payment_url) {
-      window.location.href = data.data.payment_url;
+    try {
+      const payload: IBooking = {
+        service,
+        slot,
+        customer: user?._id || "",
+      };
+      const { data } = await createBooking(payload);
+      if (data && data.data?.payment_url) {
+        window.location.href = data.data.payment_url;
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast.error("something went while accessing this recourse");
     }
   };
   const formik = useFormik({
     initialValues: {
       name: `${user?.firstName || ""} ${user?.lastName || ""}`,
       email: user?.email || "",
-      time:
-        format(new Date(data?.data?.date || "11-11-2024"), "EEEE, MMMM d") +
-        ` at ${data?.data?.startTime}`,
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -121,7 +125,7 @@ const BookingView = () => {
                 placeholder="Enter your name"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.name}
+                value={data?.data.startTime}
                 className={
                   formik.touched.name && formik.errors.name
                     ? "border-red-500"
@@ -156,7 +160,12 @@ const BookingView = () => {
               <Input
                 id="time"
                 name="time"
-                value={formik.values.time}
+                value={
+                  format(
+                    new Date(data?.data?.date || "11-11-2024"),
+                    "EEEE, MMMM d"
+                  ) + ` at ${data?.data?.startTime || ""}`
+                }
                 readOnly
               />
             </div>

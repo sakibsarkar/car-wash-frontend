@@ -13,8 +13,8 @@ const DashboardHeader = () => {
           <AvatarImage src={user?.image || ""} alt="user avatar" />
           <AvatarFallback>
             <p className="text-muted-foreground uppercase">
-              {user?.firstName.slice(0, 1)}
-              {user?.lastName.slice(0, 1)}
+              {user?.firstName?.slice(0, 1)}
+              {user?.lastName?.slice(0, 1)}
             </p>
           </AvatarFallback>
         </Avatar>

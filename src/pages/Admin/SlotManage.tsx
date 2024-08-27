@@ -1,6 +1,7 @@
 import AddSlot from "@/components/SlotManageMent/AddSlot";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Pagination,
   PaginationContent,
@@ -72,61 +73,63 @@ const SlotManage = () => {
         </Select>
         <AddSlot />
       </div>
-      <div className="overflow-x-auto relative w-full">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Start Time</TableHead>
-              <TableHead>End Time</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Service</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {data?.data?.map((slot) => (
-              <TableRow key={slot._id}>
-                <TableCell>{slot.startTime}</TableCell>
-                <TableCell>{slot.endTime}</TableCell>
-                <TableCell>{slot.date}</TableCell>
-                <TableCell>
-                  {slot.isBooked === "booked" ? "Booked" : "-"}
-                </TableCell>
-                <TableCell>{slot.service.name}</TableCell>
-                <TableCell>
-                  {slot.isBooked !== "booked" ? (
-                    <Button
-                      size="sm"
-                      variant={
-                        slot.isBooked === "available"
-                          ? "destructive"
-                          : "secondary"
-                      }
-                      onClick={() => handleToggleStatus(slot._id)}
-                    >
-                      {slot.isBooked === "available"
-                        ? "Cancel"
-                        : "Make Available"}
-                    </Button>
-                  ) : (
-                    <Badge variant={"default"} className="bg-green-300">
-                      Booked
-                    </Badge>
-                  )}
-                </TableCell>
+      <Card className="overflow-x-auto relative w-full">
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Start Time</TableHead>
+                <TableHead>End Time</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Service</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {isFetching ? (
-          <span className="w-full h-full absolute top-0 left-0 bg-primary/60 skeleton opacity-[0.6] rounded-[10px] center">
-            <span className="text-primaryMat">Loading...</span>
-          </span>
-        ) : (
-          ""
-        )}
-      </div>
+            </TableHeader>
+            <TableBody>
+              {data?.data?.map((slot) => (
+                <TableRow key={slot._id}>
+                  <TableCell>{slot.startTime}</TableCell>
+                  <TableCell>{slot.endTime}</TableCell>
+                  <TableCell>{slot.date}</TableCell>
+                  <TableCell>
+                    {slot.isBooked === "booked" ? "Booked" : "-"}
+                  </TableCell>
+                  <TableCell>{slot.service.name}</TableCell>
+                  <TableCell>
+                    {slot.isBooked !== "booked" ? (
+                      <Button
+                        size="sm"
+                        variant={
+                          slot.isBooked === "available"
+                            ? "destructive"
+                            : "secondary"
+                        }
+                        onClick={() => handleToggleStatus(slot._id)}
+                      >
+                        {slot.isBooked === "available"
+                          ? "Cancel"
+                          : "Make Available"}
+                      </Button>
+                    ) : (
+                      <Badge variant={"default"} className="bg-green-300">
+                        Booked
+                      </Badge>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>{" "}
+          {isFetching ? (
+            <span className="w-full h-full absolute top-0 left-0 bg-primary/60 skeleton opacity-[0.6] rounded-[10px] center">
+              <span className="text-primaryMat">Loading...</span>
+            </span>
+          ) : (
+            ""
+          )}
+        </CardContent>
+      </Card>
       <div className="w-full px-6 flex items-center justify-start gap-[10px]">
         <p>Page:</p>
         <Pagination className="w-fit mx-0">
