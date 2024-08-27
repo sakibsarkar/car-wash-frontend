@@ -1,14 +1,11 @@
 import { useGetUserAllBookingsQuery } from "@/redux/features/booking/booking.api";
+import { TBookingCountDown } from "@/types/booking";
 import { getTimeRemaining } from "@/utils/getRemainingSlots";
 import { useEffect, useState } from "react";
 
 const UpcomingSlotCountdown = () => {
-  const [nextSlotCountdown, setNextSlotCountdown] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-  } | null>(null);
+  const [nextSlotCountdown, setNextSlotCountdown] =
+    useState<TBookingCountDown | null>(null);
 
   const { data } = useGetUserAllBookingsQuery({
     filter: "payment=paid&status=confirm",
