@@ -53,6 +53,15 @@ const slotsApi = api.injectEndpoints({
       },
       providesTags: ["slots"],
     }),
+    toggleSlotStatus: builder.mutation<{ data: ISlot }, string>({
+      query: (id) => {
+        return {
+          url: `/slots/toggle-status/${id}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["slots"],
+    }),
   }),
 });
 
@@ -61,4 +70,5 @@ export const {
   useGetSlotByIdQuery,
   useGetSlotsQuery,
   useCreateSlotMutation,
+  useToggleSlotStatusMutation,
 } = slotsApi;

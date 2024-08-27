@@ -1,4 +1,5 @@
 import AddSlot from "@/components/SlotManageMent/AddSlot";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Pagination,
@@ -23,15 +24,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllSlotsQuery } from "@/redux/features/slots/slots.api";
+import {
+  useGetAllSlotsQuery,
+  useToggleSlotStatusMutation,
+} from "@/redux/features/slots/slots.api";
 import { ListOrderedIcon } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 const SlotManage = () => {
   const [limit, setLimit] = useState(10);
 
   const [page, setCurrentPage] = useState(1);
   const { data, isFetching } = useGetAllSlotsQuery({ limit, page });
-  const toggleSlotStatus = (id) => {};
+  const [toggleSlotStatus] = useToggleSlotStatusMutation();
+
+  const handleToggleStatus = async (id: string) => {
+    try {
+      await toggleSlotStatus(id);
+    } catch (error) {
+      toast.error("Something went wrong while making this request", {
+        description: "please try agin, or maybe this slot has already booked",
+      });
+    }
+  };
+
   return (
     <div className="p-6">
       <div className="mb-6">
@@ -79,7 +95,7 @@ const SlotManage = () => {
                 </TableCell>
                 <TableCell>{slot.service.name}</TableCell>
                 <TableCell>
-                  {slot.isBooked !== "booked" && (
+                  {slot.isBooked !== "booked" ? (
                     <Button
                       size="sm"
                       variant={
@@ -87,12 +103,16 @@ const SlotManage = () => {
                           ? "destructive"
                           : "secondary"
                       }
-                      onClick={() => toggleSlotStatus(slot._id)}
+                      onClick={() => handleToggleStatus(slot._id)}
                     >
                       {slot.isBooked === "available"
                         ? "Cancel"
                         : "Make Available"}
                     </Button>
+                  ) : (
+                    <Badge variant={"default"} className="bg-green-300">
+                      Booked
+                    </Badge>
                   )}
                 </TableCell>
               </TableRow>
