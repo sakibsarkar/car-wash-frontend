@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../dashboard/Sidebar";
 import { ThemeProvider } from "../ui/ThemeProvider";
 
-const DashboardLayout = () => {
+const AdminDashboardLayout = () => {
   return (
     <ThemeProvider defaultTheme="light">
       <div className="w-full h-screen flex items-start justify-start pb-[30px]">
@@ -19,4 +19,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default AdminDashboardLayout;

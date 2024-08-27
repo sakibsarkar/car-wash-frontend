@@ -1,10 +1,7 @@
+import AdminDashboardLayout from "@/components/Layouts/AdminDashboardLayout";
 import AuthLayout from "@/components/Layouts/AuthLayout";
-import DashboardLayout from "@/components/Layouts/DashboardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
-import BookingManage from "@/pages/Admin/BookingManage";
-import ManageUser from "@/pages/Admin/ManageUser";
-import ServiceManage from "@/pages/Admin/ServiceManage";
-import SlotManage from "@/pages/Admin/SlotManage";
+
 import Booking from "@/pages/Booking/Booking";
 import Home from "@/pages/Home/Home";
 
@@ -14,7 +11,13 @@ import ServiceDetail from "@/pages/ServiceDetail/ServiceDetail";
 import Services from "@/pages/Services/Services";
 import NotFound from "@/pages/shared/NotFound";
 
+import UserDashboardLayout from "@/components/Layouts/UserDashboardLayout";
+
+import AdminProtectedRoute from "@/ProtectRoutes/AdminProtectedRoute";
+import UserProtectedRoutes from "@/ProtectRoutes/UserProtectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
+import { adminRoutes } from "./admin.route";
+import { userRoutes } from "./user.route";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +41,11 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "procced-booking",
-        element: <Booking />,
+        element: (
+          <UserProtectedRoutes>
+            <Booking />
+          </UserProtectedRoutes>
+        ),
       },
     ],
   },
@@ -59,30 +66,22 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [
-      {
-        index: true,
-        path: "admin",
-        element: <ServiceManage />,
-      },
-      {
-        index: true,
-        path: "admin/manage-user",
-        element: <ManageUser />,
-      },
-      {
-        index: true,
-        path: "admin/manage-slots",
-        element: <SlotManage />,
-      },
-      {
-        index: true,
-        path: "admin/manage-bookings",
-        element: <BookingManage />,
-      },
-    ],
+    path: "/dashboard/admin",
+    element: (
+      <AdminProtectedRoute>
+        <AdminDashboardLayout />
+      </AdminProtectedRoute>
+    ),
+    children: [...adminRoutes],
+  },
+  {
+    path: "/dashboard/user",
+    element: (
+      <UserProtectedRoutes>
+        <UserDashboardLayout />
+      </UserProtectedRoutes>
+    ),
+    children: [...userRoutes],
   },
   {
     path: "*",

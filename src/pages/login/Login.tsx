@@ -68,7 +68,7 @@ const Login = () => {
       });
 
       redirect ? Cookies.remove("redirect") : "";
-      navigate(redirect || "/profile");
+      navigate(redirect || "/");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

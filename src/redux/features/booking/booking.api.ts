@@ -29,6 +29,22 @@ const slotsApi = api.injectEndpoints({
       },
       providesTags: ["booking"],
     }),
+    getUserAllBookings: builder.query<
+      { data: IUserBooking[]; totalDoc: number },
+      { filter: string }
+    >({
+      query: ({ filter }) => {
+        return {
+          url: `/my-bookings?${filter}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["booking"],
+    }),
   }),
 });
-export const { useCreateBookingMutation, useGetAllBookingsQuery } = slotsApi;
+export const {
+  useCreateBookingMutation,
+  useGetAllBookingsQuery,
+  useGetUserAllBookingsQuery,
+} = slotsApi;
