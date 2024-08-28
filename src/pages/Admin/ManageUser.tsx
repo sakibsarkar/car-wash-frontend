@@ -87,7 +87,7 @@ const ManageUser = () => {
 
       {data?.data && data.data.length < 1 ? <NotFound /> : ""}
 
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-1">
+      <div className="gap-4 gridUser_responsive">
         {searchTerm || page > 1 ? (
           ""
         ) : (

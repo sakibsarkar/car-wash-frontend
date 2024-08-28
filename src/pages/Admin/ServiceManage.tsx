@@ -52,7 +52,7 @@ const ServiceManage = () => {
         <h1 className="text-2xl font-bold">Service Management</h1>
         <p className="text-muted-foreground">Manage your services</p>
       </div>
-      <div className="w-full flex items-center justify-between px-6 mt-6">
+      <div className="w-full flex items-center justify-between px-6 mt-6 flex-wrap gap-[20px]">
         <form
           className="flex w-[350px]"
           onSubmit={(e) => {
@@ -77,7 +77,7 @@ const ServiceManage = () => {
             Search
           </Button>
         </form>
-        <div className="center gap-[20px]">
+        <div className="center gap-[20px] flex-wrap md:flex-nowrap">
           <Select onValueChange={(e) => setLimit(Number(e))}>
             <SelectTrigger className="">
               <ListOrderedIcon className="h-4 w-4" />

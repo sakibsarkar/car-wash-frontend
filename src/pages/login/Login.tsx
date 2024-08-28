@@ -87,7 +87,7 @@ const Login = () => {
           <FaArrowLeftLong /> Back To Home
         </Link>
         <div className="flex items-center justify-center gap-[50px]">
-          <div className="w-[500px] h-[450px]">
+          <div className="w-[500px] h-[450px] hidden lg:flex">
             <img
               src={"/images/washer.png"}
               alt="auth"
