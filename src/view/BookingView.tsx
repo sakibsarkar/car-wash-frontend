@@ -125,7 +125,7 @@ const BookingView = () => {
                 placeholder="Enter your name"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={data?.data.startTime}
+                value={formik.values.name}
                 className={
                   formik.touched.name && formik.errors.name
                     ? "border-red-500"

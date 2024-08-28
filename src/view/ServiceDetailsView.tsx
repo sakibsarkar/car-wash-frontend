@@ -44,6 +44,8 @@ const ServiceDetailsView = () => {
     navigate(bookingPage);
   };
 
+  console.log(selectedSlot);
+
   return (
     <div className="py-8 md:py-12 lg:py-16 carbon_fiber w-full">
       <SectionHeading
@@ -103,8 +105,9 @@ const ServiceDetailsView = () => {
                     <>
                       {data.data.map((slot) => {
                         const isDisable =
-                          slot.isBooked !== "available" &&
+                          slot.isBooked == "booked" ||
                           slot.isBooked == "cancel";
+
                         return (
                           <TooltipProvider>
                             <Tooltip>
