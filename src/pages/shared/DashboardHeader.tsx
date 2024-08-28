@@ -1,9 +1,19 @@
 import { ISideBarState } from "@/components/Layouts/AdminDashboardLayout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useAppSelector } from "@/redux/hooks";
 import React from "react";
 import { IoMenu } from "react-icons/io5";
+
+import { Link } from "react-router-dom";
 import ThemeChanger from "./ThemeChanger";
 
 const DashboardHeader: React.FC<ISideBarState> = ({ setIsOpen }) => {
@@ -20,15 +30,35 @@ const DashboardHeader: React.FC<ISideBarState> = ({ setIsOpen }) => {
       </Button>
       <div className="flex items-center justify-end gap-[8px]">
         <ThemeChanger />
-        <Avatar>
-          <AvatarImage src={user?.image || ""} alt="user avatar" />
-          <AvatarFallback>
-            <p className="text-muted-foreground uppercase">
-              {user?.firstName?.slice(0, 1)}
-              {user?.lastName?.slice(0, 1)}
-            </p>
-          </AvatarFallback>
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar className="cursor-pointer">
+              <AvatarImage src={user?.image || ""} alt="user avatar" />
+              <AvatarFallback>
+                <p className="text-muted-foreground uppercase">
+                  {user?.firstName?.slice(0, 1)}
+                  {user?.lastName?.slice(0, 1)}
+                </p>
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>Options</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link to={"/"}>Home</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to={"/dashboard/admin/manage-bookings"}>
+                Booking Manage
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link to={"/"}>Setting</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );

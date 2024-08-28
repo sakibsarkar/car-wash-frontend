@@ -114,9 +114,13 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
+.griProductResponsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}
 .gridUser_responsive {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(377px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(277px, 1fr));
 }
 
 .footerBoxGradient {
