@@ -37,7 +37,7 @@ const Comparison = () => {
         <Button
           variant="default"
           id="compare"
-          className={`fixed bottom-[20px] right-[20px] border-[1px] w-[50px] h-[50px] rounded-full border-borderDark ${
+          className={`relative border-[1px] w-[50px] h-[50px] rounded-full border-borderDark ${
             shake ? "shake" : ""
           }`}
         >
@@ -67,7 +67,7 @@ const Comparison = () => {
               <div className="grid gap-4 p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
-                    <h1 className="font-medium font-[700]">{service.name}</h1>
+                    <h1 className="font-[700]">{service.name}</h1>
                   </div>
                   <div className="text-right">
                     <div className="font-medium">${service.price}</div>

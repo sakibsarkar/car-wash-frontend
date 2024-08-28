@@ -25,11 +25,6 @@ export const userProfileLinks = [
     label: "My Bookings",
     Icon: RiLockPasswordLine,
   },
-  {
-    href: "/dashboard/user/security",
-    label: "Security",
-    Icon: RiLockPasswordLine,
-  },
 ];
 
 const UserDashboardSidebar = () => {
