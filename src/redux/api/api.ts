@@ -9,8 +9,8 @@ import Cookies from "js-cookie";
 import { setState, setToken, setUser } from "../features/auth/auth.slice";
 import { RootState } from "../store";
 
-// export const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-export const baseUrl = "http://localhost:5000/api";
+export const baseUrl = "https://aqua-clean-server.vercel.app/api";
+// export const baseUrl = "http://localhost:5000/api";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
@@ -69,6 +69,6 @@ export const api = createApi({
   reducerPath: "api",
 
   baseQuery: baseQueryWithRefreshToken,
-  tagTypes: ["user", "review", "service", "slots","booking"],
+  tagTypes: ["user", "review", "service", "slots", "booking"],
   endpoints: () => ({}),
 });
