@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { IUserBooking, TBookingCountDown } from "@/types/booking";
 import { getTimeRemaining } from "@/utils/getRemainingSlots";
+import { format } from "date-fns";
 import { ClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 const UserBookingCard = ({ data }: { data: IUserBooking }) => {
@@ -26,8 +27,11 @@ const UserBookingCard = ({ data }: { data: IUserBooking }) => {
         </h3>
 
         <div className="text-sm text-muted-foreground flex-col flex gap-[5px]">
-          <p>Date: June 15, 2023</p>
-          <p>Time: 2:00 PM</p>
+          <p>
+            Date:{" "}
+            {format(new Date(data?.slot?.date || "11-11-2020"), "MMM dd yyyy")}
+          </p>
+          <p>Time:{data.slot?.startTime}</p>
           <div className="flex items-center gap-2 text-muted-foreground shrink-0">
             <ClockIcon className="w-4 h-4" />
             <span>

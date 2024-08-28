@@ -1,17 +1,20 @@
-# Xfit Fitness
+# Aqua clean
+
+## Live link - [Aqua Clean](https://aqua-clean.vercel.app/)
+
+## 🔗 Server side repository - [car-wash-backend](https://github.com/sakibsarkar/FoodEx_server)
 
 ## Introduction
 
-Welcome to the Project repository!.
-fitness application allows users to create, edit, and delete products. Users can filter products by category, minimum/maximum price, and search by product title. Additionally, users can add items to their cart and proceed to checkout directly from the cart.
+This car wash and service booking application enables users to explore various car-related services and book available time slots. Users can easily find the service they need, select a convenient slot, and confirm their booking. Administrators have the ability to manage user roles, create and customize booking slots based on the service type, and oversee all bookings to ensure efficient operation.
 
 This README file will guide you through the steps required to set up and run the project on your local computer.
 
 ## Features
 
 - Api debouncing for the search functionality to reduce the number of API calls
-- Cart management system
-- Reload alert
+- Service comparison
+- Upcoming booking countdown
 
 ## Technology Stack
 
@@ -38,7 +41,7 @@ Make sure you have the following software installed on your machine:
 First, clone the repository using the following command:
 
 ```
-git clone https://github.com/sakibsarkar/XFit_client.git
+git clone https://github.com/sakibsarkar/car-wash-frontend
 
 ```
 
@@ -56,9 +59,7 @@ yarn install
 Create a .env file in the root directory of the project and add your MongoDB credentials:
 
 ```
-VITE_IMGBB_KEY=imgbb api key
-VITE_BASE_API=https://xfit-backend.vercel.app/api/v1
-VITE_STRIPE_PUBLISHABLE_KEY=your stripe Publish key
+VITE_BASE_API=https://aqua-clean-server.vercel.app/api
 ```
 
 ### Running the Project
