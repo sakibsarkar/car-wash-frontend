@@ -42,7 +42,7 @@ const HeroSection = () => {
   return (
     <div className="relative w-full overflow-hidden">
       <Carousel
-        className="overflow-hidden h-screen "
+        className="overflow-hidden lg:h-screen h-[400px]"
         plugins={[
           Autoplay({
             delay: 6000,
@@ -55,7 +55,7 @@ const HeroSection = () => {
               <Card className="bg-transparent rounded-none border-none shadow-none">
                 <CardContent className="flex items-center justify-center h-full p-0 w-full">
                   <div
-                    className="relative w-full h-screen overflow-hidden"
+                    className="relative w-full lg:h-screen h-[400px] overflow-hidden"
                     style={{ transition: "0.3s" }}
                   >
                     <div className="overlay" />
@@ -77,14 +77,14 @@ const HeroSection = () => {
                       </p>
                       <div className="center gap-[10px]">
                         <Link
-                          to={"/"}
-                          className="center gap-[5px] px-[40px] py-[12px] rounded-full bg-primaryMat/80 text-white mt-[20px] text-[25px]"
+                          to={"/services"}
+                          className="center gap-[5px] px-[20px] py-[8px] md:px-[40px] md:py-[12px] rounded-full bg-primaryMat/80 text-white mt-[20px] text-[15px] md:text-[25px]"
                         >
                           Book a Slot <MdArrowForwardIos />
                         </Link>
                         <Link
                           to={"/"}
-                          className="center gap-[5px] px-[40px] py-[12px] rounded-full bg-white text-primaryMat mt-[20px] text-[25px]"
+                          className="center gap-[5px] px-[20px] py-[8px] md:px-[40px] md:py-[12px] rounded-full bg-white text-primaryMat mt-[20px] text-[15px] md:text-[25px]"
                         >
                           Explore <MdArrowForwardIos />
                         </Link>

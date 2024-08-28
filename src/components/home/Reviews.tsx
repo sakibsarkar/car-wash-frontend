@@ -137,7 +137,10 @@ export default function Component() {
 
   const avgRating = (rating / totalCount).toFixed(2);
   return (
-    <section className="layout_container py-[40px] flex gap-[20px]" id="review">
+    <section
+      className="layout_container py-[40px] flex md:flex-row flex-col gap-[20px]"
+      id="review"
+    >
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Reviews</CardTitle>
@@ -164,7 +167,7 @@ export default function Component() {
           </Button>
         </CardContent>
       </Card>
-      <div className="bg-muted px-6 py-8 sm:px-10 sm:py-10 w-[40%]">
+      <div className="bg-muted px-6 py-8 sm:px-10 sm:py-10 md:w-[40%] w-full">
         <h3 className="text-xl font-bold mb-4">Write a Review</h3>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <RatingJsx
