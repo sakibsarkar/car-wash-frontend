@@ -7,7 +7,7 @@ interface IQueryOptions {
 }
 const slotsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    createBooking: builder.mutation<{ data: any }, IBooking>({
+    createBooking: builder.mutation<{ data: any; success: boolean }, IBooking>({
       query: (payload: IBooking) => {
         return {
           url: `/bookings`,

@@ -36,12 +36,14 @@ const BookingView = () => {
         customer: user?._id || "",
       };
       const { data } = await createBooking(payload);
+      if (!data?.success as boolean) {
+        return toast.error("something went while accessing this recourse");
+      }
       if (data && data.data?.payment_url) {
         window.location.href = data.data.payment_url;
       }
     } catch (error) {
       console.log(error);
-
       toast.error("something went while accessing this recourse");
     }
   };
