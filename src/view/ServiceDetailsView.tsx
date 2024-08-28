@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import SectionHeading from "@/components/ui/sectionHeading";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { setBookingInfo } from "@/redux/features/booking/booking.slice";
 import { useGetServiceByIdQuery } from "@/redux/features/service/service.api";
 import { useGetSlotsQuery } from "@/redux/features/slots/slots.api";
@@ -95,23 +101,44 @@ const ServiceDetailsView = () => {
                 <>
                   {data?.data.length ? (
                     <>
-                      {data.data.map((slot) => (
-                        <Button
-                          key={slot._id}
-                          variant="outline"
-                          onClick={() =>
-                            dispatch(setBookingInfo({ slot: slot._id }))
-                          }
-                          className={`w-full disabled:cursor-not-allowed ${
-                            selectedSlot == slot._id
-                              ? "bg-primaryMat text-white hover:bg-primaryMat"
-                              : ""
-                          }`}
-                          disabled={slot.isBooked !== "available"}
-                        >
-                          {slot.startTime}
-                        </Button>
-                      ))}
+                      {data.data.map((slot) => {
+                        const isDisable =
+                          slot.isBooked !== "available" &&
+                          slot.isBooked == "cancel";
+                        return (
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button
+                                  key={slot._id}
+                                  variant="outline"
+                                  onClick={() => {
+                                    if (isDisable) return;
+                                    dispatch(
+                                      setBookingInfo({ slot: slot._id })
+                                    );
+                                  }}
+                                  className={`w-full ${
+                                    selectedSlot == slot._id
+                                      ? "bg-primaryMat text-white hover:bg-primaryMat"
+                                      : ""
+                                  } ${isDisable ? "opacity-[0.5]" : ""}`}
+                                  style={
+                                    isDisable ? { cursor: "not-allowed" } : {}
+                                  }
+                                >
+                                  {slot.startTime}
+                                </Button>
+                              </TooltipTrigger>
+                              {isDisable ? (
+                                <TooltipContent>Not available</TooltipContent>
+                              ) : (
+                                ""
+                              )}
+                            </Tooltip>
+                          </TooltipProvider>
+                        );
+                      })}
                     </>
                   ) : (
                     "No slot available"

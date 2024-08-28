@@ -21,7 +21,7 @@ const UserBookingCard = ({ data }: { data: IUserBooking }) => {
   return (
     <Card>
       <CardContent className="flex flex-col gap-4 p-5">
-        <h3 className="text-lg font-medium break-words">
+        <h3 className="text-lg break-words font-[700]">
           {data?.service?.name}
         </h3>
 

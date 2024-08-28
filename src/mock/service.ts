@@ -1,5 +1,15 @@
+export type TFeaturedService = {
+  name: string;
+  image: string;
+  description: string;
+  price: number;
+  duration: number;
+  isDeleted: boolean;
+  id: string;
+};
 export const serviceData = [
   {
+    id: "11",
     name: "Exterior Cleanup",
     image: "/images/service.webp",
     description:
@@ -9,6 +19,7 @@ export const serviceData = [
     isDeleted: false,
   },
   {
+    id: "22",
     name: "Interior Cleanup",
     image: "/images/service2.webp",
     description:
@@ -18,6 +29,7 @@ export const serviceData = [
     isDeleted: false,
   },
   {
+    id: "33",
     name: "Engine Service",
     image: "/images/service3.png",
     description:
@@ -27,6 +39,7 @@ export const serviceData = [
     isDeleted: false,
   },
   {
+    id: "44",
     name: "Engine oil change",
     image: "/images/service4.webp",
     description:
@@ -36,6 +49,7 @@ export const serviceData = [
     isDeleted: false,
   },
   {
+    id: "55",
     name: "Car battery chekup",
     image: "/images/service5.jpg",
     description:
@@ -45,6 +59,7 @@ export const serviceData = [
     isDeleted: false,
   },
   {
+    id: "66",
     name: "Maintanance Advice",
     image: "/images/service6.jpeg",
     description:
