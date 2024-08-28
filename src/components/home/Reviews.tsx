@@ -132,6 +132,10 @@ export default function Component() {
 
   const RatingJsx = Rating as any;
 
+  const rating = data?.data?.reduce((acc, cur) => acc + cur.rating, 0) || 0;
+  const totalCount = data?.data?.length || 1;
+
+  const avgRating = (rating / totalCount).toFixed(2);
   return (
     <section className="layout_container py-[40px] flex gap-[20px]" id="review">
       <Card className="w-full">
@@ -140,16 +144,9 @@ export default function Component() {
         </CardHeader>
         <CardContent>
           <div className="flex items-start gap-8 mb-8">
-            <div className="text-5xl font-bold">4.0</div>
+            <h2 className="text-5xl font-bold">{avgRating}</h2>
             <div className="flex-1">
               <RatingBar data={data?.data || []} />
-            </div>
-            <div className="text-sm text-right">
-              <div>5.0 14K reviews</div>
-              <div>4.0 6K reviews</div>
-              <div>3.0 4K reviews</div>
-              <div>2.0 800 reviews</div>
-              <div>1.0 9K reviews</div>
             </div>
           </div>
 
