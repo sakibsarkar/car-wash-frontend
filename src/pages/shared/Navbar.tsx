@@ -16,8 +16,8 @@ const navLinks = [
     href: "/services",
   },
   {
-    lebel: "Booking",
-    href: "/",
+    lebel: "Testimonials",
+    href: "/testimonials",
   },
 ];
 
